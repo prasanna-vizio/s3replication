@@ -91,7 +91,7 @@ resource "aws_iam_role_policy_attachment" "replication_policy_attachment" {
 
 resource "aws_s3_bucket_replication_configuration" "replication" {
   bucket = aws_s3_bucket.source_bucket.id
-
+  depends_on = [ aws_s3_bucket_versioning.source_versioning ]
   role = aws_iam_role.replication_role.arn
     rule {
     id = "ReplicationRule"
@@ -104,7 +104,7 @@ resource "aws_s3_bucket_replication_configuration" "replication" {
 
     destination {
       bucket        = aws_s3_bucket.destination_bucket.arn
-      storage_class = "STANDARD"
+      # storage_class = "STANDARD"
     }
   }
 
