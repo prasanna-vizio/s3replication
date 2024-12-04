@@ -55,7 +55,8 @@ resource "aws_iam_policy" "qa_bucket_replication_policy" {
 
 resource "aws_iam_role_policy_attachment" "qa_bucket_replication_policy_attachment" {
   role       = aws_iam_role.qa_bucket_replication_role.name
-  policy_arn = aws_iam_policy.qa_bucket_replication_policy.arn
+  # policy_arn = aws_iam_policy.qa_bucket_replication_policy.arn
+  policy_arn = arn:aws:iam::618844571952:role/ServiceRoleS3BatchOperations
 }
 
 resource "aws_s3_bucket_replication_configuration" "qa_bucket_replication_configuration" {
