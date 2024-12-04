@@ -12,13 +12,13 @@ module "s3_replication" {
 }
 
 output "source_bucket_id" {
-  value = module.s3_replication.source_bucket_id
+  value = module.s3_replication.qa_bucket_id
 }
 
 output "destination_bucket_id" {
-  value = module.s3_replication.destination_bucket_id
+  value = module.s3_replication.prd_bucket_id
 }
 
 output "replication_role_arn" {
-  value = module.s3_replication.replication_role_arn
+  value = module.s3_replication.qa_replication_role_arn
 }

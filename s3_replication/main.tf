@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "qa_bucket" {
  }
 
  resource "aws_s3_bucket_versioning" "qa_bucket_versioning" {
-  count = var.app_env == "qa" ? 1 : 0
+  depends_on = [ aws_s3_bucket.qa_bucket ]
   bucket = aws_s3_bucket.qa_bucket.id
 
   versioning_configuration {
@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "qa_bucket" {
 }
 
 resource "aws_iam_role" "qa_bucket_replication_role" {
-  count = var.app_env == "qa" ? 1 : 0
+  depends_on = [ aws_s3_bucket_versioning.qa_bucket_versioning ]
   name               = var.qa_replication_role_name
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
