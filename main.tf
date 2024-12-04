@@ -4,11 +4,11 @@ provider "aws" {
 
 module "s3_replication" {
   source                 = "./s3_replication"
-  qa_bucket_qa_bucket_name = 
-  prd_bucket_name = 
-  qqa_replication_role_name = 
+  qa_bucket_name = var.qa_bucket_name
+  prd_bucket_name = var.prd_bucket_name
+  qa_replication_role_name = var.qa_replication_role_name
   aws_account_id         = var.aws_account_id
-  app_env = 
+  app_env = var.app_env
 }
 
 output "source_bucket_id" {
